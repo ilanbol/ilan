@@ -3,13 +3,14 @@ provider "aws" {
 }
 
 
-module "ec2" {
-  source = "./modules/ec2"
+data "aws_ssm_parameter" "this" {
+  name = "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
 }
+
 
 #Create webserver
 resource "aws_instance" "webserver" {
-  ami                         = module.ec2.ami_id
+  ami                         = data.aws_ssm_parameter
   instance_type               = "t3.micro"
   key_name                    = var.key_name
   associate_public_ip_address = true
