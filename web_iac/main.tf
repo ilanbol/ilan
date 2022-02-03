@@ -50,8 +50,4 @@ resource "aws_security_group" "sg" {
   }
 }
 
-resource "aws_ecr_repository" "web_ecr_repo" {
-  name                 = "web_ecr"
-}
-
 
