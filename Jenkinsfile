@@ -39,9 +39,13 @@ pipeline {
                 '''
             }
         }
-        stage('print URL site') {
+        stage('Deploy web app on eks') {
             steps {
-                echo "web site URL is http://${terraform output elb_hostname}/index.html"
+                sh '''
+                  cd k8s
+                  kubectl apply -f deployment.yaml
+                  kubectl apply -f web-service.yaml
+                    '''
             }
         }
     }
