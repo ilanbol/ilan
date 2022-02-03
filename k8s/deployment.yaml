@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-Mobileye
+spec:
+  selector:
+    matchLabels:
+      app: web
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: hello-Mobileye
+          image: <aws-account-id>.dkr.ecr.us-east-1.amazonaws.com/web-image:latest
+          ports:
+            - containerPort: 80
+              protocol: TCP
