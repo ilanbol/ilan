@@ -3,9 +3,6 @@ provider "aws" {
 }
 
 
-locals {
-  cluster_name = "my-cluster"
-}
 # create eks
 
 
