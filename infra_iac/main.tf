@@ -3,18 +3,26 @@ provider "aws" {
 }
 
 
-data "aws_ssm_parameter" "this" {
-  name = "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
+data "aws_ami" "latest" {
+
+
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-*-gp2"]
+  }
+
+  most_recent = true
+  owners = ["amazon"]
 }
 
 
 #Create webserver
 resource "aws_instance" "jenkins" {
-  ami                         = data.aws_ssm_parameter
+  ami                         = data.aws_ami.latest.id
   instance_type               = "t2.micro"
   key_name                    = var.key_name
   associate_public_ip_address = true
-  vpc_security_group_ids      = [aws_security_group.sg.id]
+  vpc_security_group_ids      = [aws_security_group.jenkins-sg.id]
   subnet_id                   = var.aws_subnet
   user_data = "${file("config/config.sh")}"
   tags = {
@@ -27,13 +35,13 @@ resource "aws_instance" "jenkins" {
 resource "aws_security_group" "jenkins-sg" {
   name        = "sg"
   description = "Allow TCP/80 & TCP/22"
-  vpc_id      = var.vpc.id
+  vpc_id      = var.vpc
   ingress {
     description = "Allow SSH traffic"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["46.121.168.130/32"]
   }
   ingress {
     description = "allow traffic from TCP/80"
