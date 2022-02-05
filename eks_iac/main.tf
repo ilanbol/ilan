@@ -10,7 +10,7 @@ module "eks" {
   source       = "git::https://github.com/terraform-aws-modules/terraform-aws-eks.git?ref=v12.1.0"
   cluster_name = "web-cluster"
   vpc_id       = var.vpc
-  subnets      = ["subnet-abcde012", "subnet-bcde012a", "subnet-fghi345a"]
+  subnets      = ["subnet-06947a07502cf3616", "subnet-0b398623ae96d66d2", "subnet-06d88bec198a17188"]
 
   node_groups = {
     eks_nodes = {

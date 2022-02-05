@@ -23,8 +23,8 @@ pipeline {
             steps {
                 sh '''
                   docker build -t web-image .
-                  aws ecr get-login-password --region region | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.region.amazonaws.com
-                  docker tag web-image:latest aws_account_id.dkr.ecr.region.amazonaws.com/web-image:latest
+                  aws ecr get-login-password --region region | docker login --username AWS --password-stdin 230417554355.dkr.ecr.region.amazonaws.com
+                  docker tag web-image:latest 230417554355.dkr.ecr.region.amazonaws.com/web-image:latest
                   docker push aws_account_id.dkr.ecr.region.amazonaws.com/web-image:latest
                  '''
             }

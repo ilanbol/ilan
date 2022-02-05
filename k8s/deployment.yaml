@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: hello-Mobileye
-          image: <aws-account-id>.dkr.ecr.us-east-1.amazonaws.com/web-image:latest
+          image: 230417554355.dkr.ecr.us-east-1.amazonaws.com/web-image:latest
           ports:
             - containerPort: 80
               protocol: TCP

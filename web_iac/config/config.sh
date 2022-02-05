@@ -13,3 +13,7 @@ sudo yum upgrade
 sudo yum install jenkins java-1.8.0-openjdk-devel -y
 sudo systemctl daemon-reload
 sudo systemctl start jenkins
+
+aws eks update-kubeconfig --region us-east-1 --name web-cluster
+
+echo "credential >> ~./aws/config"
