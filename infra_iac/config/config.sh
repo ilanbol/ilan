@@ -15,5 +15,3 @@ sudo systemctl daemon-reload
 sudo systemctl start jenkins
 
 aws eks update-kubeconfig --region us-east-1 --name web-cluster
-
-echo "credential >> ~./aws/config"
