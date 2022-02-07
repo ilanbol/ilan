@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-Mobileye
+  name: hello-mobileye
 spec:
   selector:
     matchLabels:
@@ -13,7 +13,7 @@ spec:
         app: web
     spec:
       containers:
-        - name: hello-Mobileye
+        - name: hello-mobileye
           image: 230417554355.dkr.ecr.us-east-1.amazonaws.com/web-image:latest
           ports:
             - containerPort: 80
